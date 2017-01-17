@@ -3,14 +3,15 @@
  */
 
 package com.sanford
+
 import calculator.*
 import kotlin.io.*
 
 fun main(args: Array<String>) {
 
-    var y : Int = 1;
+    var y: Int = 1;
 
-    while(y == 1){
+    loop@ while (y == 1) {
         println("Escolha uma operação:")
         println("1 - Soma")
         println("2 - Subtração")
@@ -19,18 +20,24 @@ fun main(args: Array<String>) {
 
         println("0 - Sair")
 
-        var input : Int = readLine()
+        var input: Int? = readLine()?.toInt()
 
-        var fNumber: Int = 1
-        var sNumber: Int = 2
+        if (input == null) continue@loop
 
-        when (input){
+        var fNumber: Int?
+        var sNumber: Int?
+
+        when (input) {
             1, 2, 3, 4 -> {
                 println("Digite o primeiro número: ")
-                fNumber = parseInt(readLine())
+                fNumber = readLine()?.toInt()
+
+                if (fNumber == null) continue@loop
 
                 println("Digite o segundo número: ")
-                sNumber = parseInt(readLine())
+                sNumber = readLine()?.toInt()
+
+                if (sNumber == null) continue@loop
 
                 when (input) {
                     1 -> println("Resultado = ${calculator.sum(fNumber, sNumber)}")
